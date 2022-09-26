@@ -88,6 +88,7 @@ def test_bin2bcd():
         assert dig0 == 2
         assert dig1 == 1
 
+
     b = Signal(modbv(0))
     dig0 = Signal(modbv(0))
     dig1 = Signal(modbv(0))

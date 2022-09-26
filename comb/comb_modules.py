@@ -13,12 +13,13 @@ from myhdl import *
 @block
 def exe1(q, a, b):
     """
+    # negar b
     q = a or !b
     """
 
     @always_comb
     def comb():
-        q.next = a
+        q.next = a or not b
 
     return instances()
 
@@ -41,10 +42,13 @@ def exe2(q, a, b, c):
 
     Não utilize IF!
     """
+    # Fiz a tabela vdd e calculei a equação resultante
 
     @always_comb
     def comb():
-        q.next = a
+        bn = not b
+        cn = not c
+        q.next = (bn and cn) or (b and c)
 
     return instances()
 
@@ -69,10 +73,10 @@ def exe3(q, a, b, c, d, e):
                                     |   )-----
     e--------------------------------|__/
     """
-
+    # portas lógicas aplicada em myhdl
     @always_comb
     def comb():
-        q.next = a
+        q.next = ((((a or b) and c) and d) and e)
 
     return instances()
 
@@ -155,6 +159,6 @@ def bin2hex(hex0, sw):
 def bin2bcd(b, dig1, dig0):
     @always_comb
     def comb():
-       pass
-
+        
     return instances()
+
