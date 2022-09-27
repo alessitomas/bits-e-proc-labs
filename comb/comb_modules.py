@@ -157,8 +157,16 @@ def bin2hex(hex0, sw):
 
 @block
 def bin2bcd(b, dig1, dig0):
+    
+    bin={0:'0000',1:'0001',2:'0010',3:'0011',4:'0100',5:'0101',6:'0110',7:'0111',8:'1000',9:'1001'}
     @always_comb
     def comb():
-        
+        b = b[4:0]
+        if b<10:
+            dig0.next = bin[b]
+            dig1.next = bin[0]
+        else:
+            dig0.next = bin[b[1]]
+            dig1.next = bin[b[0]]
     return instances()
 
